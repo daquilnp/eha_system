@@ -26,4 +26,4 @@ Kpipe = 2.5e12; %Pa/m^6/s^2
 %Linear EHA Model Block Diagram variables
 x_d = 10; %%desired x
 
-
+open('eha_model.slx');

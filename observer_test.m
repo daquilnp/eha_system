@@ -32,5 +32,5 @@ eb = [-7, -8, -10];
 L = place(A',C',eb);
 L = L';
 X_OB = [-10; 3; -6];
-
-
+sys=ss(A,B,C,0);
+Nbar= rscale(sys,K);

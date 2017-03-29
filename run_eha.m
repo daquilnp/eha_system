@@ -1,29 +1,18 @@
-Kc = 1; %Nm/A
-Kw = 0.6; %V/rad/s
-%%Known variables
-Rc = 0.5; %ohm
-Lc = 0.004; %H
-Jpm = 1.6e-3; %Kgm^2
-M = 20; %Kg
-Dp = 1.7e-7; %m^3/rad
-Ka1 = 6980; %rad/s/m
-Ka2 = 41.87; %rad/s/V
-Kp = 1.2*Ka2;
-Ki = 2.4*Ka2;
-Kpos = 1*Ka1;
-Vo = 6.85e-5; %m^3
-A = 5.05e-4; %m^2
-Psens = 1e-6; %m
-Vsens = 1; %rad/s
-Ma = 8; %Kg
-x_max = 12; %cm
-Be = 2.1e8; %Pa
-Kf = 2.4e-4; %Nm/rad/s
-B = 760; %N/m/s
-L2ep = 5e-13; %m^3/s/Nm^-2
-Kpipe = 2.5e12; %Pa/m^6/s^2
+NG = 13.2;
+DG = [1 40 39150 0];
+G = tf(NG,DG);
+[A,B,C,~] = tf2ss(NG,DG);
+D = [0;0;0];
+z = 0.707;
+Ts = 0.1;
+wn = 4/(z*Ts);
+r = roots([1,2*z*wn, wn^2]);
+poles =  [r' -40];
+K = place(A,B,poles);
+X_O=[0.001;0;0];
+L = place(A', C', 10*poles)
+L = L';
+sys=ss(A,B,C,0);
+Nbar= rscale(sys,K);
+open('observer_test_sim.slx');
 
-%Linear EHA Model Block Diagram variables
-x_d = 1; %%desired x
-
-open('eha_model.slx');

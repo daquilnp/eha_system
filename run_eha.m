@@ -1,8 +1,7 @@
 NG = 13.2;
 DG = [1 40 39150 0];
 G = tf(NG,DG);
-[A,B,C,~] = tf2ss(NG,DG);
-D = 0;
+[A,B,C,D] = tf2ss(NG,DG);
 z = 0.707;
 Ts = 0.1;
 wn = 4/(z*Ts);

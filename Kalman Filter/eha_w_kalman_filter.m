@@ -17,11 +17,11 @@ Nbar= rscale(sys,K);
 w_max = [0.01 1 10]';
 V_max = 0.1;
 sample_t = 1e-3;
-Q = [ 1 0 0; 0 10 0; 0 0 100];
+Q = 0.001*[ 1 0 0; 0 10 0; 0 0 100];
 R = 10;
 x0 = [0 0 0]'; %intial x
 P0 = 10*Q; %intial P
-
+u = 0;
 
 
 
